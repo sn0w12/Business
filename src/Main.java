@@ -39,7 +39,7 @@ public class Main {
                     String skirtPattern = ConsoleUI.askForChoiceFromListString(Arrays.asList("Straight", "A-line", "Maxi"));
 
                     Skirt skirt = garmentCreationSystem.createSkirt("Name", skirtSize, skirtMaterial, skirtColor, skirtWaistline, skirtPattern);
-                    ConsoleUI.print("Size: " + skirt.getSize() + "\n" + "Material: " + skirt.getMaterial() + "\n" + "Color: " + skirt.getColor() + "\n" + "Waistline: " + skirt.getWaistline() + "\n" + "Size: " + skirt.getSize() + "\n" + "Pattern: " + skirt.getPattern() + "\n" + "Price: " + skirt.getPrice() + "\n");
+                    ConsoleUI.print("Size: " + skirt.getSize() + "\n" + "Material: " + skirt.getMaterial() + "\n" + "Color: " + skirt.getColor() + "\n" + "Waistline: " + skirt.getWaistline() + "\n" + "Size: " + skirt.getSize() + "\n" + "Pattern: " + skirt.getPattern() + "\n" + "Price: " + skirt.getPrice() + "Kr\n");
                     break;
                 case 5:
                     run = false;
