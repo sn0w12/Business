@@ -82,6 +82,28 @@ public class Skirt implements Observer {
         this.pattern = pattern;
     }
 
+    public int calculatePrice(String material, String pattern) {
+        int price = 0;
+        switch(material) {
+            case "Cotton":
+                price += 100;
+                break;
+            case "Nylon":
+                price += 200;
+                break;
+        }
+        switch (pattern) {
+            case "Straight":
+                price += 100;
+            case "A-line":
+                price += 200;
+            case "Maxi":
+                price += 400;
+        }
+        // Return price - 1 to get 99 at end of price
+        return --price;
+    }
+
     // Builder nested class
     public static class SkirtBuilder {
         private String name;
@@ -92,13 +114,36 @@ public class Skirt implements Observer {
         private int waistline;
         private String pattern;
 
-        public SkirtBuilder(String name, String size, String material, String color, int waistline, String pattern) {
+        public SkirtBuilder() {}
+
+        public SkirtBuilder name(String name) {
             this.name = name;
+            return this;
+        }
+
+        public SkirtBuilder size(String size) {
             this.size = size;
+            return this;
+        }
+
+        public SkirtBuilder material(String material) {
             this.material = material;
+            return this;
+        }
+
+        public SkirtBuilder color(String color) {
             this.color = color;
+            return this;
+        }
+
+        public SkirtBuilder waistline(int waistline) {
             this.waistline = waistline;
+            return this;
+        }
+
+        public SkirtBuilder pattern(String pattern) {
             this.pattern = pattern;
+            return this;
         }
 
         public Skirt build() {
@@ -110,29 +155,8 @@ public class Skirt implements Observer {
             skirt.setColor(this.color);
             skirt.setWaistline(this.waistline);
             skirt.setPattern(this.pattern);
-            skirt.setPrice(calculatePrice(this.material, this.pattern));
+            skirt.setPrice(this.price);
             return skirt;
-        }
-
-        private int calculatePrice(String material, String pattern) {
-            int price = 0;
-            switch(material) {
-                case "Cotton":
-                    price += 50;
-                    break;
-                case "Nylon":
-                    price += 100;
-                    break;
-            }
-            switch (pattern) {
-                case "Straight":
-                    price += 50;
-                case "A-line":
-                    price += 100;
-                case "Maxi":
-                    price += 150;
-            }
-            return price;
         }
     }
 }

@@ -23,6 +23,9 @@ public class Main {
                     customer.update("Your account has successfully been added!");
                     break;
                 case 4:
+                    Skirt skirt = new Skirt();
+                    garmentCreationSystem.start("skirt");
+
                     ConsoleUI.print("Choose skirt material:");
                     String skirtMaterial = ConsoleUI.askForChoiceFromListString(Arrays.asList("Cotton", "Nylon"));
 
@@ -33,13 +36,14 @@ public class Main {
                     String skirtColor = ConsoleUI.askForChoiceFromListString(Arrays.asList("Black", "Purple"));
 
                     ConsoleUI.print("Choose waistline size:");
-                    int skirtWaistline = Integer.parseInt(ConsoleUI.askForChoiceFromListString(Arrays.asList("30", "35", "40")));
+                    String skirtWaistline = ConsoleUI.askForChoiceFromListString(Arrays.asList("30", "35", "40"));
 
                     ConsoleUI.print("Choose skirt pattern:");
                     String skirtPattern = ConsoleUI.askForChoiceFromListString(Arrays.asList("Straight", "A-line", "Maxi"));
 
-                    Skirt skirt = garmentCreationSystem.createSkirt("Name", skirtSize, skirtMaterial, skirtColor, skirtWaistline, skirtPattern);
-                    ConsoleUI.print("Size: " + skirt.getSize() + "\n" + "Material: " + skirt.getMaterial() + "\n" + "Color: " + skirt.getColor() + "\n" + "Waistline: " + skirt.getWaistline() + "\n" + "Size: " + skirt.getSize() + "\n" + "Pattern: " + skirt.getPattern() + "\n" + "Price: " + skirt.getPrice() + "Kr\n");
+                    skirt = garmentCreationSystem.createSkirt("Name", skirtMaterial, skirtSize, skirtColor, skirtWaistline, skirtPattern);
+
+                    ConsoleUI.print("\nReceipt:\nSize: " + skirt.getSize() + "\n" + "Material: " + skirt.getMaterial() + "\n" + "Color: " + skirt.getColor() + "\n" + "Waistline: " + skirt.getWaistline() + "\n" + "Size: " + skirt.getSize() + "\n" + "Pattern: " + skirt.getPattern() + "\n" + "Price: " + skirt.getPrice() + "Kr\n");
                     break;
                 case 5:
                     run = false;

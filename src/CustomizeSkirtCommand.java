@@ -18,7 +18,18 @@ public class CustomizeSkirtCommand implements Command {
             case "color":
                 skirt.setColor(customizationValue);
                 break;
-            // Add more cases for different types of customizations
+            case "material":
+                skirt.setMaterial(customizationValue);
+                break;
+            case "size":
+                skirt.setSize(customizationValue);
+                break;
+            case "waistline":
+                skirt.setWaistline(Integer.parseInt(customizationValue));
+                break;
+            case "price":
+                skirt.setPrice(Integer.parseInt(customizationValue));
+                break;
             default:
                 System.out.println("Customization type " + customizationType + " not recognized.");
                 break;

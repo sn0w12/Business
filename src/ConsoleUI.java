@@ -74,7 +74,7 @@ public class ConsoleUI {
         return choice; // Return the user's choice
     }
 
-    // Method to print a list of items with indices and scan for an integer answer
+    // Method to print a list of items with indices and scan for an integer answer, then return the text of the chosen item
     public static String askForChoiceFromListString(List<String> items) {
         if (items == null || items.isEmpty()) {
             System.out.println("The list is empty.");
