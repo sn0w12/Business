@@ -52,10 +52,21 @@ public class Customer implements Observer {
         private String email;
 
         // Constructor without parameters for initial builder setup
-        public CustomerBuilder(String name, String address, String email) {
+        public CustomerBuilder() {}
+
+        public Customer.CustomerBuilder name(String name) {
             this.name = name;
+            return this;
+        }
+
+        public Customer.CustomerBuilder address(String address) {
             this.address = address;
+            return this;
+        }
+
+        public Customer.CustomerBuilder email(String email) {
             this.email = email;
+            return this;
         }
 
         // Build method to create a new CEO instance with the specified attributes

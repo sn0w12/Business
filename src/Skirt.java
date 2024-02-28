@@ -82,28 +82,6 @@ public class Skirt implements Observer {
         this.pattern = pattern;
     }
 
-    public int calculatePrice(String material, String pattern) {
-        int price = 0;
-        switch(material) {
-            case "Cotton":
-                price += 100;
-                break;
-            case "Nylon":
-                price += 200;
-                break;
-        }
-        switch (pattern) {
-            case "Straight":
-                price += 100;
-            case "A-line":
-                price += 200;
-            case "Maxi":
-                price += 400;
-        }
-        // Return price - 1 to get 99 at end of price
-        return --price;
-    }
-
     // Builder nested class
     public static class SkirtBuilder {
         private String name;

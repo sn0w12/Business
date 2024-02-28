@@ -1,4 +1,5 @@
 public class CEO implements Observer {
+    private static int idCounter = 0;
     private int id;
     private String name;
 
@@ -31,16 +32,17 @@ public class CEO implements Observer {
         private int id;
         private String name;
 
-        // Constructor without parameters for initial builder setup
-        public CEOBuilder(int id, String name) {
-            this.id = id;
+        public CEOBuilder() {}
+
+        public CEO.CEOBuilder name(String name) {
             this.name = name;
+            return this;
         }
 
         // Build method to create a new CEO instance with the specified attributes
         public CEO build() {
             CEO ceo = new CEO();
-            ceo.setId(this.id);
+            ceo.setId(++idCounter);
             ceo.setName(this.name);
             return ceo;
         }
