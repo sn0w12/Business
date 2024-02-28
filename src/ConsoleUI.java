@@ -1,3 +1,4 @@
+import java.util.InputMismatchException;
 import java.util.List;
 import java.util.Scanner;
 
@@ -61,12 +62,23 @@ public class ConsoleUI {
         printListWithIndices(items);
 
         System.out.println("Enter the number of your choice: ");
-        int choice = scanner.nextInt();
+        int choice = 0;
 
         // Validate the choice
-        while (choice < 1 || choice > items.size()) {
-            System.out.println("Invalid choice. Please enter a number between 1 and " + items.size());
-            choice = scanner.nextInt();
+        boolean validInput = false;
+        while (!validInput) {
+            try {
+                choice = scanner.nextInt();
+                // Validate the choice range
+                if (choice < 1 || choice > items.size()) {
+                    System.out.println("Invalid choice. Please enter a number between 1 and " + items.size() + ".");
+                } else {
+                    validInput = true; // Valid input and within range, break the loop
+                }
+            } catch (InputMismatchException e) {
+                System.out.println("Invalid input. Please enter a number.");
+                scanner.nextLine(); // Consume the incorrect input
+            }
         }
 
         scanner.nextLine(); // Consume the newline character left after reading an integer
@@ -84,12 +96,23 @@ public class ConsoleUI {
         printListWithIndices(items);
 
         System.out.println("Enter the number of your choice: ");
-        int choice = scanner.nextInt();
+        int choice = 0;
 
         // Validate the choice
-        while (choice < 1 || choice > items.size()) {
-            System.out.println("Invalid choice. Please enter a number between 1 and " + items.size());
-            choice = scanner.nextInt();
+        boolean validInput = false;
+        while (!validInput) {
+            try {
+                choice = scanner.nextInt();
+                // Validate the choice range
+                if (choice < 1 || choice > items.size()) {
+                    System.out.println("Invalid choice. Please enter a number between 1 and " + items.size() + ".");
+                } else {
+                    validInput = true; // Valid input and within range, break the loop
+                }
+            } catch (InputMismatchException e) {
+                System.out.println("Invalid input. Please enter a number.");
+                scanner.nextLine(); // Consume the incorrect input
+            }
         }
 
         String output = items.get(--choice);
