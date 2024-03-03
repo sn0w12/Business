@@ -1,5 +1,6 @@
 public class Pants implements Observer {
-    private String id;
+    private static int idCounter = 0;
+    private int id;
     private String name;
     private String size;
     private int price;
@@ -17,11 +18,11 @@ public class Pants implements Observer {
     }
 
     // Getters and setters for each attribute
-    public String getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(int id) {
         this.id = id;
     }
 
@@ -79,5 +80,65 @@ public class Pants implements Observer {
 
     public void setLength(int length) {
         this.length = length;
+    }
+
+    public static class PantsBuilder {
+        private String name;
+        private String size;
+        private int price;
+        private String material;
+        private String color;
+        private String fit;
+        private int length;
+
+        public PantsBuilder() {}
+
+        public PantsBuilder name(String name) {
+            this.name = name;
+            return this;
+        }
+
+        public PantsBuilder size(String size) {
+            this.size = size;
+            return this;
+        }
+
+        public PantsBuilder price(int price) {
+            this.price = price;
+            return this;
+        }
+
+        public PantsBuilder material(String material) {
+            this.material = material;
+            return this;
+        }
+
+        public PantsBuilder color(String color) {
+            this.color = color;
+            return this;
+        }
+
+        public PantsBuilder fit(String fit) {
+            this.fit = fit;
+            return this;
+        }
+
+        public PantsBuilder length(int length) {
+            this.length = length;
+            return this;
+        }
+
+        public Pants build() {
+            Pants pants = new Pants();
+            pants.setId(++idCounter);
+            pants.setName(this.name);
+            pants.setSize(this.size);
+            pants.setPrice(this.price);
+            pants.setMaterial(this.material);
+            pants.setColor(this.color);
+            pants.setFit(this.fit);
+            pants.setLength(this.length);
+            return pants;
+        }
     }
 }
