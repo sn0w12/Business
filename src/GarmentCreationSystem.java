@@ -7,19 +7,13 @@ public class GarmentCreationSystem extends Observable {
             .color(color)
             .build();
 
-        ClothingCustomizer customizer = new ClothingCustomizer();
+        ClothingCustomizerPipeline customizer = new ClothingCustomizerPipeline();
 
-        Command customizeSkirtWaistline = new CustomizeSkirtCommand(skirt, "waistline", waistline);
-        customizer.setCommand(customizeSkirtWaistline);
-        customizer.customize();
+        customizer.addCommand(new CustomizeSkirtCommand(skirt, "waistline", waistline));
+        customizer.addCommand(new CustomizeSkirtCommand(skirt, "pattern", pattern));
+        customizer.addCommand(new CustomizeSkirtCommand(skirt, "price", Integer.toString(calculateSkirtPrice(material, pattern))));
 
-        Command customizeSkirtPattern = new CustomizeSkirtCommand(skirt, "pattern", pattern);
-        customizer.setCommand(customizeSkirtPattern);
-        customizer.customize();
-
-        Command customizeSkirtPrice = new CustomizeSkirtCommand(skirt, "price", Integer.toString(calculateSkirtPrice(skirt.getMaterial(), skirt.getPattern())));
-        customizer.setCommand(customizeSkirtPrice);
-        customizer.customize();
+        customizer.executeCommands();
 
         notifyObservers("A new skirt with id " + skirt.getId() + " has been created.");
         return skirt;
@@ -33,19 +27,13 @@ public class GarmentCreationSystem extends Observable {
                 .color(color)
                 .build();
 
-        ClothingCustomizer customizer = new ClothingCustomizer();
+        ClothingCustomizerPipeline customizer = new ClothingCustomizerPipeline();
 
-        Command customizePantsFit = new CustomizePantsCommand(pants, "fit", fit);
-        customizer.setCommand(customizePantsFit);
-        customizer.customize();
+        customizer.addCommand(new CustomizePantsCommand(pants, "fit", fit));
+        customizer.addCommand(new CustomizePantsCommand(pants, "length", length));
+        customizer.addCommand(new CustomizePantsCommand(pants, "price", Integer.toString(calculatePantsPrice(material, fit))));
 
-        Command customizePantsLength = new CustomizePantsCommand(pants, "length", length);
-        customizer.setCommand(customizePantsLength);
-        customizer.customize();
-
-        Command customizePantsPrice = new CustomizePantsCommand(pants, "price", Integer.toString(calculatePantsPrice(pants.getMaterial(), pants.getFit())));
-        customizer.setCommand(customizePantsPrice);
-        customizer.customize();
+        customizer.executeCommands();
 
         notifyObservers("New pants with id " + pants.getId() + " has been created.");
         return pants;
@@ -59,19 +47,13 @@ public class GarmentCreationSystem extends Observable {
                 .color(color)
                 .build();
 
-        ClothingCustomizer customizer = new ClothingCustomizer();
+        ClothingCustomizerPipeline customizer = new ClothingCustomizerPipeline();
 
-        Command customizeTShirtNeck = new CustomizeTShirtCommand(tShirt, "neck", neck);
-        customizer.setCommand(customizeTShirtNeck);
-        customizer.customize();
+        customizer.addCommand(new CustomizeTShirtCommand(tShirt, "neck", neck));
+        customizer.addCommand(new CustomizeTShirtCommand(tShirt, "sleeves", sleeves));
+        customizer.addCommand(new CustomizeTShirtCommand(tShirt, "price", Integer.toString(calculateTShirtPrice(material, sleeves))));
 
-        Command customizeTShirtSleeves = new CustomizeTShirtCommand(tShirt, "sleeves", sleeves);
-        customizer.setCommand(customizeTShirtSleeves);
-        customizer.customize();
-
-        Command customizeTShirtPrice = new CustomizeTShirtCommand(tShirt, "price", Integer.toString(calculateTShirtPrice(tShirt.getMaterial(), tShirt.getSleeves())));
-        customizer.setCommand(customizeTShirtPrice);
-        customizer.customize();
+        customizer.executeCommands();
 
         notifyObservers("New tShirt with id " + tShirt.getId() + " has been created.");
         return tShirt;
@@ -94,10 +76,13 @@ public class GarmentCreationSystem extends Observable {
         switch (pattern) {
             case "Straight":
                 price += 100;
+                break;
             case "A-line":
                 price += 200;
+                break;
             case "Maxi":
                 price += 400;
+                break;
         }
         // Return price - 1 to get 99 at end of price
         return --price;
@@ -116,10 +101,13 @@ public class GarmentCreationSystem extends Observable {
         switch (fit) {
             case "Slim":
                 price += 100;
+                break;
             case "Straight":
                 price += 200;
+                break;
             case "Baggy":
                 price += 400;
+                break;
         }
         // Return price - 1 to get 99 at end of price
         return --price;
@@ -138,10 +126,13 @@ public class GarmentCreationSystem extends Observable {
         switch (sleeves) {
             case "Sleeveless":
                 price += 100;
+                break;
             case "Short Sleeves":
                 price += 200;
+                break;
             case "Long sleeves":
                 price += 400;
+                break;
         }
         // Return price - 1 to get 99 at end of price
         return --price;
