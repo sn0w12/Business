@@ -9,7 +9,7 @@ public class Main {
         garmentCreationSystem.attach(ceo);
 
         boolean run = true;
-        boolean isSignedIn = true;
+        boolean isSignedIn = false;
         Customer currentCostumer;
 
         while(run) {
